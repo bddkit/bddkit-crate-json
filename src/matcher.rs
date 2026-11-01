@@ -2,6 +2,7 @@ use regex::Regex;
 use serde_json::Value;
 
 #[derive(Debug, Clone, PartialEq)]
+#[non_exhaustive]
 pub struct Mismatch {
     pub path: String,
     pub expected: String,
@@ -195,10 +196,21 @@ pub fn not_contains(actual: &Value, expected: &Value) -> Result<(), UnexpectedMa
 
 /// `actual` contains `expected`, but the caller asked for the opposite.
 #[derive(Debug, Clone, PartialEq)]
+#[non_exhaustive]
 pub struct UnexpectedMatch {
     /// The expected JSON, pretty-printed.
     pub expected: String,
 }
+
+impl std::fmt::Display for UnexpectedMatch {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(&self.describe("the value"))
+    }
+}
+
+impl std::error::Error for UnexpectedMatch {}
+
+impl std::error::Error for Mismatch {}
 
 impl UnexpectedMatch {
     /// The report line for the subject the caller checked, for example `body`.

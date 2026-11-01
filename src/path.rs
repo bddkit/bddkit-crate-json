@@ -13,8 +13,7 @@ pub fn validate(path: &str) -> Result<(), PathError> {
 }
 
 /// Reads a value by a path like `a.b[0].c`. An optional `root.` prefix
-/// is allowed for readability. Full JSONPath isn't needed — the reference
-/// only ever used this syntax.
+/// is allowed for readability. Full JSONPath is not supported.
 pub fn read<'a>(root: &'a Value, path: &str) -> Result<&'a Value, PathError> {
     let path = path.trim();
     let path = path
