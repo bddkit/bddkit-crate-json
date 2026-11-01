@@ -83,6 +83,15 @@ mod tests {
     }
 
     #[test]
+    fn every_public_error_is_a_std_error() {
+        fn is_error<E: std::error::Error>() {}
+        is_error::<Mismatch>();
+        is_error::<UnexpectedMatch>();
+        is_error::<PathError>();
+        is_error::<InvalidJson>();
+    }
+
+    #[test]
     fn path_errors_display_their_message() {
         let e = path::read(&json!({}), "a").unwrap_err();
         assert_eq!(e.to_string(), "path root.a does not exist");
