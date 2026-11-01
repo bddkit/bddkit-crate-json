@@ -1,0 +1,17 @@
+[package]
+name = "bddkit-crate-json"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.97"
+description = "JSON path reader and matcher for bddkit: loose `contains`, strict `equals`, and the @variableType, @arrayLength and @regExp matchers"
+license = "Apache-2.0"
+repository = "https://github.com/bddkit/bddkit-crate-json"
+homepage = "https://github.com/bddkit/bddkit-crate-json"
+readme = "README.md"
+keywords = ["bdd", "json", "testing", "matcher", "bddkit"]
+categories = ["development-tools::testing"]
+exclude = ["/.github"]
+
+[dependencies]
+serde_json = "1.0"
+regex = "1.13"
