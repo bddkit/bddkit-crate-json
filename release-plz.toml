@@ -1,0 +1,4 @@
+[workspace]
+# A library: semver_check compares the public API with the last published release.
+semver_check = true
+changelog_update = true
